@@ -1,0 +1,142 @@
+@charset "utf-8";
+body {
+    background: #f2f5f8;
+}
+.my-padding{
+	padding-top: 0.575rem;
+	background:#ffffff;
+}
+.ant-steps {
+    position: relative;
+    padding: 0 0.5rem;
+    .ant-steps-main {
+        overflow: hidden;
+        .line-h {
+
+        }
+        .gray {
+            color: #999999;
+            font-size: 0.65rem;
+            padding: 0.5rem 0 0.75rem 0;
+        }
+        .customer {
+          padding-bottom: 0.9rem;
+            .call{
+                padding:0 0.5rem 0 1.5rem;
+                height: 1.25rem;
+                border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
+                border: solid 1px rgba(0, 119, 248, 1);
+                background: #ffffff;
+                font-size: 0.65rem;
+                margin-left: 5px;
+                background: url("../image/my/calling.png") no-repeat  0.6rem center;
+                background-size: auto 0.6rem;
+            }
+        }
+    }
+    .ant-steps-fetch {
+        position: absolute;
+        left: 1rem;
+        top: 0;
+        height: 100%;
+        i {
+            width: 1px;
+            height: 100%;
+            display: inline-block;
+            vertical-align: top;
+            background: #60ca99;
+        }
+    }
+    .ant-steps-send {
+        .ant-steps-head {
+            float: left;
+            margin-right: 0.5rem;
+            .ant-steps-head-inner {
+                display: block;
+                border: 1px solid #60ca99;
+                width: 1rem;
+                height: 1rem;
+                border-radius: 1rem;
+                text-align: center;
+                position: relative;
+                background: #fff;
+                line-height: 1rem;
+                font-size: 0.6rem;
+                span:before {
+                    content: "取";
+                }
+                .send:before {
+                    content: "送";
+                }
+            }
+            .ant-steps-head-fetch {
+                background: #60ca99;
+                color: #ffffff;
+            }
+            .ant-steps-head-send {
+                background: #ffffff;
+                color: #60ca99;
+            }
+        }
+    }
+}
+// 总计
+.line {
+    .line-img {
+        height: 0.275rem;
+        width: 100%;
+    }
+}
+//水平线
+.my-hr {
+    margin: 0 0.5rem;
+    border-top: 1px solid #d2d2d2;
+    padding-bottom: 0.5rem;
+}
+.circle {
+	text-align:center;
+	width: 1rem;
+	height: 1rem;
+	border:1px solid rgba(0, 119, 248, 1);
+	border-radius:50%;
+	display:inline-block;
+}
+// 列表
+.my-list{
+  .aui-list.aui-list-in{
+  	font-size:0;
+      .aui-list-header {
+        background: #ffffff;
+        font-size: 0.75rem;
+        padding-left: 0.5rem;
+      }
+    .aui-list-item {
+      background: #ffffff;
+    }
+  }
+}
+// 餐盒列表
+.meal-box{
+  .aui-list-item-title{
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    .contact{
+      display: -webkit-flex;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  // .my-right{
+  //   .btn-box{
+  //     .revocation{
+  //       margin-top: 0.2rem;
+  //       background: #ffffff;
+  //       border:1px solid #0077f8;
+  //       padding:0.1rem 0.5rem;
+  //       border-radius:1.1rem;
+  //       color:#0077f8;
+  //     }
+  //   }
+  // }
+}

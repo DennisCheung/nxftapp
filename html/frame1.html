@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>已送达</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+    <link rel="stylesheet" href="../css/delivery.css">
+    <style>
+
+      .my-content {
+        display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+        display: -moz-box; /* 老版本语法: Firefox (buggy) */
+        display: -ms-flexbox; /* 混合版本语法: IE 10 */
+        display: -webkit-flex; /* 新版本语法： Chrome 21+ */
+        display: flex; /* 新版本语法： Opera 12.1, Firefox 22+ */ /*垂直居中*/	/*老版本语法*/
+        -webkit-box-align: center;
+        -moz-box-align: center; /*混合版本语法*/
+        -ms-flex-align: center; /*新版本语法*/
+        -webkit-align-items: center;
+        align-items: center; /*水平居中*/ /*老版本语法*/
+        -webkit-box-pack: center;
+        -moz-box-pack: center; /*混合版本语法*/
+        -ms-flex-pack: center; /*新版本语法*/
+        -webkit-justify-content: center;
+        justify-content: center;
+        background: #fff;
+      }
+      .my-content img{
+        width: 7.825rem;
+        height: auto;
+        margin: 0 auto;
+      }
+    </style>
+</head>
+<body>
+  <!-- 助餐点带联系人及电话 -->
+  <!-- <div class="aui-content aui-margin-t-15" style="background:#ffffff;">
+
+    <div class="aui-info aui-margin-t-10 aui-padded-l-10 aui-padded-r-10" onclick="openDetail();">
+      <div class="aui-info-item" tapmode="selected">
+        <span class="aui-padded-r-5">配送单号</span>
+        <a><span class="aui-text-default" id="deliveNoteId"></span></a>
+      </div>
+      <div class="aui-info-item">
+          <i class="iconfont icon-motuoche-copy aui-text-green aui-font-size-20"></i>
+          <span class="aui-margin-l-5 aui-text-success">助餐点</span>
+      </div>
+    </div>
+    <hr class="my-hr">
+
+    <div class="ant-steps">
+      <div class="ant-steps-send">
+        <div class="ant-steps-head">
+          <div class="ant-steps-head-inner ant-steps-head-send">
+            <span class="send"></span>
+          </div>
+        </div>
+        <div class="ant-steps-main">
+          <div class="aui-text-default line-h">番禺南村社区助餐点</div>
+          <div class="gray line-h">广州市番禺区南村镇XXX村XX街XX号</div>
+          <div class="customer"><span class="aui-text-transition">张大爷(先生)：</span><span class="aui-text-blue">159****9173</span><input type="button" class="call aui-text-blue" value="联系"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>
+        <span class="aui-text-blue">实送达6份</span>
+        <span class="aui-text-transition aui-padded-l-5">应送达 <i class="aui-text-default">6份</i></span>
+      </div>
+      <input type="button" value="确认已送达" class="my-btn">
+    </div>
+  </div> -->
+  <!-- 到户不带练习人及电话 -->
+  <!-- <div class="aui-content aui-margin-t-15" style="background:#ffffff;">
+    <div class="aui-info aui-margin-t-10 aui-padded-l-10 aui-padded-r-10">
+      <div class="aui-info-item">
+        <span class="aui-padded-r-5">配送单号</span>
+        <span class="aui-text-default">100000423</span>
+      </div>
+      <div class="aui-info-item">
+          <i class="iconfont icon-motuoche-copy aui-text-green aui-font-size-20"></i>
+          <span class="aui-margin-l-5 aui-text-success">到户</span>
+      </div>
+    </div>
+    <hr class="my-hr">
+
+    <div class="ant-steps">
+      <div class="ant-steps-send">
+        <div class="ant-steps-head">
+          <div class="ant-steps-head-inner ant-steps-head-send">
+            <span class="send"></span>
+          </div>
+        </div>
+        <div class="ant-steps-main">
+          <div class="aui-text-default line-h">番禺南村社区助餐点</div>
+          <div class="gray line-h">广州市番禺区南村镇XXX村XX街XX号</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div>
+        <span class="aui-text-blue">实送达6份</span>
+        <span class="aui-text-transition aui-padded-l-5">应送达 <i class="aui-text-default">6份</i></span>
+      </div>
+      <input type="button" value="确认已送达" class="my-btn">
+    </div>
+  </div> -->
+</body>
+</html>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/commonFunc.js"></script>
+<script type="text/javascript">
+var url = $api.getStorage("url");
+apiready=function(){
+  requestData();
+  api.setRefreshHeaderInfo({
+      loadingImg: 'widget://image/refresh.png',
+      bgColor: '#ccc',
+      textColor: '#fff',
+      textDown: '下拉刷新...',
+      textUp: '松开刷新...'
+  }, function(ret, err) {
+      //在这里从服务器加载数据，加载完成后调用api.refreshHeaderLoadDone()方法恢复组件到默认状态
+      requestData();
+  });
+
+  api.addEventListener({
+      name: 'myEvent'
+  }, function(ret, err) {
+      requestData();
+  });
+  api.addEventListener({
+      name: 'frame0Event'
+  }, function(ret, err) {
+      requestData();
+  });
+}
+//请求数据
+function requestData(){
+  $api.html(document.body,"");
+  api.ajax({
+      url: url + '/cors/findDelivedNoteCModel?teamId=' + $api.getStorage('teamId') + "&userId=" + $api.getStorage("userId"),
+      method: 'get',
+      dataType: 'json'
+  }, function(ret, err) {
+    api.sendEvent({
+      name: 'redFrame1',
+      extra: {
+          frame1: Boolean(ret.length)
+      }
+    });
+    if (ret.length) {
+        var html = "";
+        for (var i = 0; i < ret.length; i++) {
+            if (ret[i].deliveType == 'HOME') {
+                // 到户
+              html +='<div class="aui-content aui-margin-t-15" style="background:#ffffff;"><div class="aui-info aui-margin-t-10 aui-padded-l-10 aui-padded-r-10" tapmode onclick="openDetail('+
+              ret[i].deliveNoteId+');"><div class="aui-info-item"><span class="aui-padded-r-5">配送单号</span><span class="aui-text-default">'+
+              ret[i].deliveNoteId+//配送单号
+              '</span></div><div class="aui-info-item"><i class="iconfont icon-motuoche-copy aui-text-green aui-font-size-20"></i>  <span class="aui-margin-l-5 aui-text-success">'+
+              ret[i].deliveTypeName+//到户
+              '</span></div></div><hr class="my-hr"><!-- 取 --><div class="ant-steps"><div class="ant-steps-send">  <div class="ant-steps-head">  <div class="ant-steps-head-inner ant-steps-head-send"><span class="send"></span></div></div><div class="ant-steps-main"><div class="aui-text-default line-h">'+
+              ret[i].deliveSiteName+//助餐点
+              '</div><div class="gray line-h">'+
+              ret[i].deliveAddr+//助餐点地址
+              '</div></div></div></div><div class="footer">  <div><span class="aui-text-blue">实送达'+
+              ret[i].completeQuantity+
+              '份</span>  <span class="aui-text-transition aui-padded-l-5">未送达 <i class="aui-text-default">'+
+              ret[i].unCompleteQuantity+
+              '份</i></span></div><!--<input type="button" value="确认已送达" class="my-btn">--></div></div>';
+            } else if(ret[i].deliveType == 'SITE'){
+                // 助餐点
+              html +='<div class="aui-content aui-margin-t-15" style="background:#ffffff;"><div class="aui-info aui-margin-t-10 aui-padded-l-10 aui-padded-r-10" tapmode onclick="openDetail('+
+              ret[i].deliveNoteId+');"><div class="aui-info-item" tapmode="selected"><span class="aui-padded-r-5">配送单号</span><a><span class="aui-text-default" id="deliveNoteId">'+
+              ret[i].deliveNoteId+'</span></a></div><div class="aui-info-item"><i class="iconfont icon-motuoche-copy aui-text-green aui-font-size-20"></i><span class="aui-margin-l-5 aui-text-success">'+
+              ret[i].deliveTypeName+'</span></div>  </div><hr class="my-hr"><!-- 地址送 --><div class="ant-steps"><div class="ant-steps-send"><div class="ant-steps-head"><div class="ant-steps-head-inner ant-steps-head-send"><span class="send"></span></div>  </div><div class="ant-steps-main"><div class="aui-text-default line-h">'+
+              ret[i].deliveSiteName+// 番禺南村社区助餐点+
+              '</div><div class="gray line-h">'+
+              ret[i].deliveAddr+// 广州市番禺区南村镇XXX村XX街XX号+
+              '</div><div class="customer"><span class="aui-text-transition">'+
+              ret[i].contactPerson+
+              // 张大爷(先生)+
+              '：</span><span class="aui-text-blue">'+
+              formatPhone(ret[i].contactMobile)+
+              '</span><input type="button" class="call aui-text-blue" value="联系" onclick=call('+
+              '"callback"'+',"'+ret[i].kitchenTeamName+'","'+ret[i].contactPerson+'","'+ret[i].contactMobile+
+              '")></div></div></div></div><!-- 总计 --><div class="footer"><div><span class="aui-text-blue">实送达'+
+              ret[i].completeQuantity+
+              '份</span><span class="aui-text-transition aui-padded-l-5">未送达 <i class="aui-text-default">'+
+              ret[i].unCompleteQuantity+
+              '份</i></span></div><!--<input type="button" value="确认已送达" class="my-btn">--></div></div>';
+            }
+
+        }
+        $api.append(document.body, html);
+    } else {
+      //暂时无数据
+      var nodata='<div class="aui-margin-t-15 my-content" style="width:'+api.frameWidth+'px;height:'+(api.frameHeight-15)+'px;"><div><img src="../image/my/blank-alert.png"><div class="aui-text-gray aui-text-center aui-padded-t-15">暂无数据</div></div></div>';
+      $api.append(document.body, nodata);
+    }
+    api.hideProgress();
+    api.refreshHeaderLoadDone();
+  });
+}
+//联系
+function call(type,address,name,phone){
+  api.confirm({
+      title:address,
+      msg: name+" "+formatPhone(phone),
+      buttons: ['取消', '呼叫']
+  }, function(ret, err) {
+      var index = ret.buttonIndex;
+      if(index==2){
+        api.call({
+        type: 'tel',
+        number: ''+phone
+      });
+      }
+  });
+}
+//查看详情
+function openDetail(deliveNoteId){
+  api.openWin({
+    name:"delivery_detail",
+    url:"delivery_detail.html",
+    rect: {
+					x: 0,
+					y: 0,
+					w: api.winWidth,
+					h: api.winHeight
+				},
+    animation:{
+      type:"push"
+    },
+    bounces: false,
+		delay: 200,
+    pageParam: {
+      id: deliveNoteId
+    },
+    reload:true
+  }
+);
+}
+function funcGoto(){
+  requestData();
+}
+</script>

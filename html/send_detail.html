@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/font2/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/sendDetail.css" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>待送达详情</title>
+</head>
+
+<body>
+  <!-- 到助餐点 -->
+    <header class="aui-bar aui-bar-nav" id="header">
+        <a class="aui-pull-left aui-btn" tapmode onclick="api.closeWin({name:'sendDetail'})">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">待送达详情</div>
+    </header>
+    <!-- 带联系人及电话 -->
+    <div class="aui-content my-padding">
+        <div class="ant-steps">
+            <div class="ant-steps-fetch">
+                <i></i>
+            </div>
+            <div class="ant-steps-send">
+                <div class="ant-steps-head">
+                    <div class="ant-steps-head-inner ant-steps-head-fetch">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="ant-steps-main">
+                    <div class="aui-text-default line-h">番禺南村敬老院配餐中心</div>
+                    <div class="gray line-h">广州市番禺区南村镇XXX村XX街XX号</div>
+                </div>
+            </div>
+        </div>
+        <div class="ant-steps">
+            <div class="ant-steps-send">
+                <div class="ant-steps-head">
+                    <div class="ant-steps-head-inner ant-steps-head-send">
+                        <span class="send"></span>
+                    </div>
+                </div>
+                <div class="ant-steps-main">
+                    <div class="aui-text-default line-h">番禺南村社区助餐点</div>
+                    <div class="gray line-h">广州市番禺区南村镇XXX村XX街XX号</div>
+                    <div class="customer"><span class="aui-text-transition">张大爷(先生)：</span><span class="aui-text-blue">159****9173</span>
+                        <input type="button" class="call aui-text-blue" value="联系">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 线条 -->
+        <div class="line">
+            <img src="../image/my/line.png" class="line-img">
+        </div>
+    </div>
+    <!-- 不带联系人及电话 -->
+    <div class="aui-content my-padding" style="display: none;">
+        <div class="aui-info aui-margin-t-10 aui-padded-l-10 aui-padded-r-10">
+            <div class="aui-info-item">
+                <span class="aui-padded-r-5">配送单号</span>
+                <span class="aui-text-default">100000423</span>
+            </div>
+            <div class="aui-info-item">
+                <img src="../image/my/motor.png" style="width:1.2rem" class="aui-img-round" />
+                <!-- <i class="iconfont icon-motuoche-copy aui-text-green aui-font-size-20"></i> -->
+                <span class="aui-margin-l-5 aui-text-success">助餐点</span>
+            </div>
+        </div>
+        <hr class="my-hr">
+        <div class="ant-steps">
+            <div class="ant-steps-fetch">
+                <i></i>
+            </div>
+            <div class="ant-steps-send">
+                <div class="ant-steps-head">
+                    <div class="ant-steps-head-inner ant-steps-head-fetch">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="ant-steps-main">
+                    <div class="aui-text-default line-h">番禺南村敬老院配餐中心</div>
+                    <div class="gray line-h">广州市番禺区南村镇XXX村XX街XX号</div>
+                </div>
+            </div>
+        </div>
+        <div class="ant-steps">
+            <div class="ant-steps-send">
+                <div class="ant-steps-head">
+                    <div class="ant-steps-head-inner ant-steps-head-send">
+                        <span class="send"></span>
+                    </div>
+                </div>
+                <div class="ant-steps-main">
+                    <div class="aui-text-default line-h">番禺南村社区助餐点</div>
+                    <div class="gray line-h">广州市番禺区南村镇XXX村XX街XX号</div>
+                </div>
+            </div>
+        </div>
+        <!-- 线条 -->
+        <div class="line">
+            <img src="../image/my/line.png" class="line-img">
+        </div>
+    </div>
+    <!-- 配单详情 -->
+    <div class="aui-content aui-margin-t-15" style="background:#ffffff;">
+        <!-- 配送单号 -->
+        <div class="aui-info aui-margin-t-10 aui-padded-l-10 aui-padded-r-10">
+            <div class="aui-info-item">
+                <span class="aui-padded-r-5">配送单号</span>
+                <span class="aui-text-default">100000423</span>
+            </div>
+            <div class="aui-info-item">
+                <!-- <img src="../image/my/motor.png" style="width:1.2rem" class="aui-img-round" /> -->
+                <i class="iconfont icon-motuoche-copy aui-text-green aui-font-size-20"></i>
+                <span class="aui-margin-l-5 aui-text-success">助餐点</span>
+            </div>
+        </div>
+        <hr class="my-hr">
+        <!-- 订单列表 -->
+        <div class="aui-content my-list">
+            <ul class="aui-list aui-list-in">
+                <li class="aui-list-header">
+                    <div>
+                        <span class="aui-text-default">
+                      <i>2017-08-16</i>
+                      <i>星期三</i>
+                    </span>
+                        <span class="circle aui-margin-l-5"><i class="num aui-text-blue">午</i></span>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-text-blue">青椒肉丝</div>
+                        <div class="aui-list-item-right aui-text-blue">×3</div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-text-blue">冬菇云耳鸡腿肉饭</div>
+                        <div class="aui-list-item-right aui-text-blue">×3</div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-text-blue">西红柿炒蛋</div>
+                        <div class="aui-list-item-right aui-text-blue">×3</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- 总计 -->
+        <div class="footer aui-content aui-padded-r-10 aui-padded-t-10 aui-padded-b-10">
+            <span class="aui-text-transition aui-pull-right aui-font-size-16">总计<i class="aui-text-blue">6份</i></span>
+        </div>
+    </div>
+    <!-- 订单详情 -->
+    <div class="detail-word aui-content aui-text-gray aui-padded-b-10 aui-padded-10" style="text-align: center">
+        ———— 订单详情 ————
+    </div>
+    <!-- 饭盒编号 -->
+    <div class="aui-content aui-margin-b-15 meal-box">
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+                <div class="aui-list-item-inner">
+                  <div class="aui-list-item-title">
+                      <i class="iconfont icon-gou aui-font-size-20 aui-text-blue"></i>
+                      <div class="contact aui-padded-l-10">
+                        <p class="aui-text-default">简爱群</p>
+                        <span class="aui-text-gray">餐盒编号：23</span>
+                      </div>
+                  </div>
+                    <div class="aui-list-item-right my-right">
+                      <div class="aui-text-default">冬菇云耳鸡腿肉饭</div>
+                      <div class="btn-box">
+                        <input type="button" class="revocation" value="撤销送达">
+                      </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+                <div class="aui-list-item-inner">
+                  <div class="aui-list-item-title">
+                      <i class="iconfont icon-gou aui-font-size-20 aui-text-blue"></i>
+                      <div class="contact aui-padded-l-10">
+                        <p class="aui-text-default">简爱群</p>
+                        <span class="aui-text-gray">餐盒编号：23</span>
+                      </div>
+                  </div>
+                    <div class="aui-list-item-right my-right">
+                      <div class="aui-text-default">冬菇云耳鸡腿肉饭</div>
+                      <div class="btn-box">
+                        <input type="button" class="revocation" value="撤销送达">
+                      </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+                <div class="aui-list-item-inner">
+                  <div class="aui-list-item-title">
+                      <i class="iconfont icon-quan aui-font-size-20"></i>
+                      <div class="contact aui-padded-l-10">
+                        <p class="aui-text-default">简爱群</p>
+                        <span class="aui-text-gray">餐盒编号：23</span>
+                      </div>
+                  </div>
+                  <div class="aui-list-item-right my-right">
+                    <div class="aui-text-default">冬菇云耳鸡腿肉饭</div>
+                    <div class="btn-box">
+                      <input type="button" class="revocation" value="撤销送达">
+                    </div>
+                  </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>
+<script type="text/javascript" src="../script/api.js"></script>
+<script>
+  apiready=function(){
+    var header=document.getElementById("header");
+    $api.fixStatusBar(header);
+  }
+
+</script>

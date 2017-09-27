@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+  <link rel="stylesheet" type="text/css" href="css/aui.css" />
+  <link rel="stylesheet" type="text/css" href="css/font3/iconfont.css" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>登录</title>
+  <style>
+    .footer{
+      margin-top: 1.25rem;
+    }
+  </style>
+</head>
+<body>
+    <div class="aui-content aui-text-center" style="margin-top:4.375rem;">
+      <img src="image/my/logo.png" style="height:4.25rem;display:inline-block;" alt="">
+    </div>
+    <div class="aui-content" style="margin-top:3.125rem;">
+     <ul class="aui-list aui-list-in" style="background:none;letter-spacing: 0.9px;">
+        <li class="aui-list-item" style="background:none;">
+              <div class="aui-list-item-inner">
+                  <div class="aui-list-item-title aui-text-default" style="font-size:0.75rem;">
+                    帐号
+                  </div>
+              </div>
+          </li>
+        <li class="aui-list-item">
+              <div class="aui-list-item-inner">
+                  <div class="aui-list-item-title" style="width:90%;">
+                    <input type="text" id="mobile">
+                  </div>
+                  <div class="aui-list-item-right" onclick="myClear()">
+                    <i class="iconfont icon-shanchu aui-font-size-18"></i>
+                  </div>
+              </div>
+          </li>
+        <li class="aui-list-item" style="background:none;">
+              <div class="aui-list-item-inner">
+                  <div class="aui-list-item-title aui-text-default" style="font-size:0.75rem;">
+                    密码
+                  </div>
+              </div>
+          </li>
+        <li class="aui-list-item" style="background-position:0.75rem bottom;">
+              <div class="aui-list-item-inner">
+                  <div class="aui-list-item-title" style="width:90%;">
+                    <input type="password" id="password">
+                  </div>
+                  <div class="aui-list-item-right" onclick="isShow()">
+                    <i class="iconfont icon-mimabukejian" id="show"></i>
+                  </div>
+              </div>
+          </li>
+        </ul>
+    </div>
+    <div class="aui-content-padded aui-text-center" style="height:1.1rem;line-height:1.1rem;">
+      <p class="aui-text-danger" id="text"></p>
+    </div>
+    <div class="aui-content-padded">
+      <p><div  onclick="ensure()" class="aui-btn aui-btn-sm aui-btn-info aui-btn-block" style="border-radius:1.8rem;">登录</div></p>
+    </div>
+    <div class="aui-content aui-text-center footer" style="height:1.1rem;line-height:1.1rem;width:100%;">
+      <p class="aui-text-gray">——————助餐专送——————</p>
+    </div>
+<script src="script/api.js"></script>
+<script>
+var url=$api.getStorage("url");
+apiready=function(){
+}
+var mobile=$api.byId('mobile');
+var password=$api.byId('password');
+var text=$api.byId('text');
+function ensure(){
+    api.showProgress();
+    api.ajax({
+            url : url+'/cors/loginAuth',
+            method : 'post',
+            dataType : 'json',
+            headers:{
+              "content-type": "application/json"
+            },
+            data : {
+                body:{
+                  username : mobile.value,
+                  password : password.value
+                }
+            }
+    },function(ret, err) {
+            if (ret) {
+                  api.openWin({
+                      name: 'main',
+                      url: 'widget://html/main.html',
+                      pageParam: {
+                          name: 'main'
+                      }
+                  });
+                    var loginInfo={
+                      name:mobile.value,
+                      password:password.value
+                    };
+                    $api.setStorage('userId', ret.userId);
+                    $api.setStorage('teamId', ret.teamId);
+
+                    $api.setStorage("loginInfo",JSON.stringify(loginInfo));
+            } else {
+                    text.textContent=err.body.message;
+            }
+                    api.hideProgress();
+    }
+  );
+}
+
+function isShow(){
+  var show=$api.byId('show');
+  var flag=$api.hasCls(show,'aui-text-blue');
+  if(flag){
+    password.type="password";
+    $api.removeCls(show,'aui-text-blue');
+  }else{
+    $api.addCls(show, 'aui-text-blue');
+    password.type="text";
+  }
+}
+
+function myClear(){
+  mobile.value="";
+}
+</script>
+</body>
+</html>

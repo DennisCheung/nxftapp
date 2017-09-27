@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/font2/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/deliveryDetail.css" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>已送达详情</title>
+</head>
+<body>
+    <!-- 到助餐点 -->
+    <header class="aui-bar aui-bar-nav" id="header">
+        <a class="aui-pull-left aui-btn" tapmode onclick="closeNow()">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">已送达详情</div>
+    </header>
+    <!-- 带联系人及电话 -->
+    <div class="aui-content my-padding">
+        <div class="ant-steps">
+            <div class="ant-steps-send">
+                <div class="ant-steps-head">
+                    <div class="ant-steps-head-inner ant-steps-head-send">
+                        <span class="send"></span>
+                    </div>
+                </div>
+                <div class="ant-steps-main">
+                    <div class="aui-text-default line-h" id="deliveSiteName"></div>
+                    <div class="gray line-h" id="deliveAddr"></div>
+                    <div class="customer"><span class="aui-text-transition" id="contactPerson"></span>：<span class="aui-text-blue" id="contactMobile"></span>
+                        <input type="button" class="call aui-text-blue" value="联系" id="call">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 线条 -->
+        <div class="line">
+            <img src="../image/my/line.png" class="line-img">
+        </div>
+    </div>
+    <!-- 配单详情 -->
+    <div class="aui-content aui-margin-t-15" style="background:#ffffff;">
+        <!-- 配送单号 -->
+        <div class="aui-info aui-margin-t-10 aui-padded-l-10 aui-padded-r-10">
+            <div class="aui-info-item">
+                <span class="aui-padded-r-5">配送单号</span>
+                <span class="aui-text-default" id="deliveNoteId">100000423</span>
+            </div>
+        </div>
+        <hr class="my-hr">
+        <!-- 状态列表 -->
+        <div class="aui-grid">
+            <div class="aui-row aui-font-size-20">
+              <div class="aui-col-xs-4">
+                <i class="iconfont icon-motuoche-copy aui-text-green"></i>
+                <div class="aui-grid-label aui-text-green">助餐点</div>
+              </div>
+              <div class="aui-col-xs-4">
+                <i id="completeQuantity"></i>
+                <div class="aui-grid-label">实送达</div>
+              </div>
+              <div class="aui-col-xs-4">
+                <i id="unCompleteQuantity"></i>
+                <div class="aui-grid-label">应送达</div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <!-- 订单详情 -->
+    <div class="detail-word aui-content aui-text-gray aui-padded-b-10 aui-padded-10" style="text-align: center">
+        ———— 订单详情 ————
+    </div>
+    <div style="display:none;" id="myPhone"></div>
+    <!-- 饭盒编号 -->
+    <div class="aui-content aui-margin-b-15 meal-box">
+        <ul class="aui-list aui-list-in" id="mealBox">
+            <!-- <li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+                <div class="aui-list-item-inner">
+                  <div class="aui-list-item-title">
+                      <i class="iconfont icon-gou aui-font-size-20 aui-text-blue"></i>
+                      <div class="contact aui-padded-l-10">
+                        <p class="aui-text-default">简爱群</p>
+                        <span class="aui-text-gray">餐盒编号：23</span>
+                      </div>
+                  </div>
+                    <div class="aui-list-item-right my-right">
+                      <div class="aui-text-default">冬菇云耳鸡腿肉饭</div>
+                      <div class="btn-box">
+                        <input type="button" class="revocation" value="撤销送达">
+                      </div>
+                    </div>
+                </div>
+            </li> -->
+            <!-- <li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+                <div class="aui-list-item-inner">
+                  <div class="aui-list-item-title">
+                      <div class="contact aui-padded-l-10">
+                        <i class="iconfont icon-quan aui-font-size-20"></i>
+                        <span class="aui-text-gray">回收饭盒</span>
+                      </div>
+                      <div class="contact aui-padded-l-10">
+                        <p class="aui-text-default">简爱群</p>
+                        <span class="aui-text-gray">餐盒编号：23</span>
+                      </div>
+                  </div>
+                  <div class="aui-list-item-right my-right">
+                    <div class="aui-text-default">冬菇云耳鸡腿肉饭</div>
+                    <div class="btn-box">
+                      <input type="button" class="revocation" value="撤销送达">
+                    </div>
+                  </div>
+                </div>
+            </li> -->
+        </ul>
+    </div>
+
+    <!-- 按钮 -->
+    <!-- <div class="aui-content-padded">
+        <p>
+            <div class="aui-btn aui-btn-info aui-btn-block aui-btn-sm">确认已送达 <span>(9)</span></div>
+        </p>
+    </div> -->
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/commonFunc.js"></script>
+<script>
+var url=$api.getStorage("url");
+var dialogBox;
+apiready=function(){
+    dialogBox = api.require('dialogBox');
+    var header=document.getElementById("header");
+    $api.fixStatusBar(header);
+    requestData();
+}
+function requestData(){
+  $api.html($api.byId("mealBox"),'');
+  api.ajax({
+      url: url + '/cors/findDelivedNoteCDetail?deliveNoteId=' +api.pageParam.id ,
+      method: 'get',
+      dataType: 'json'
+  }, function(ret, err) {
+      $api.text($api.byId('deliveAddr'),ret.deliveAddr);
+      $api.text($api.byId('deliveAddr'),ret.deliveAddr);
+      $api.text($api.byId('deliveSiteName'),ret.deliveSiteName);
+      $api.text($api.byId('contactPerson'),ret.contactPerson);
+      $api.text($api.byId('contactMobile'),formatPhone(ret.contactMobile));
+      $api.text($api.byId('deliveNoteId'),ret.deliveNoteId);
+      $api.text($api.byId('deliveTypeName'),ret.deliveTypeName);
+      $api.text($api.byId('unCompleteQuantity'),ret.completeQuantity+ret.unCompleteQuantity);
+      $api.text($api.byId('completeQuantity'),ret.completeQuantity);
+      $api.text($api.byId('week'),ret.week);
+      $api.text($api.byId('myPhone'),ret.contactMobile);
+
+      var mealHtml="";
+      for(var i=0;i<ret.orderList.length;i++){
+        var fanhe=ret.orderList[i].isRecycleBox?"icon-gou":"icon-quan";
+        mealHtml +='<li class="aui-list-item aui-padded-t-10 aui-padded-b-10"><div class="aui-list-item-inner"><div class="aui-list-item-title">'+
+        '<div class="contact aui-padded-l-10" onclick=recycle(this,"'+
+        ret.orderList[i].orderId+'","'+ret.orderList[i].isRecycleBox+'")><i class="iconfont aui-text-blue '+
+         fanhe+'"></i><span class="aui-text-gray">回收饭盒</span></div>'+
+        '<div class="contact aui-padded-l-10"><p class="aui-text-default">'+
+        ret.orderList[i].subjectName+'</p><span class="aui-text-gray">餐盒编号：'+
+        ret.orderList[i].lunchBoxNo+'</span></div></div><div class="aui-list-item-right my-right"><div class="aui-text-default">'+
+        ret.orderList[i].mealName+'</div><div class="btn-box" tapmode onclick=undo("'+
+        ret.orderList[i].orderId+'")><input type="button" class="revocation" value="撤销送达"></div></div></div></li>';
+      }
+
+      $api.append($api.byId("mealBox"), mealHtml);
+    }
+  );
+}
+//撤销送达
+function undo(orderId){
+  dialogBox.alert({
+      texts : {
+          content : '是否撤销送达？',
+          leftBtnTitle : '取消',
+          rightBtnTitle : '撤销'
+      },
+      styles : {
+          bg : '#fff',
+          corner : 6,
+          w : 260,
+          content : {
+            marginT : 40,
+            marginB : 40,
+            color : '#333',
+            size : 16
+          },
+        left : {
+            marginB : 20,
+            marginL : 30,
+            h : 35,
+            corner : 2,
+            color : "#666",
+            bg : '#ccc',
+            size : 12
+        },
+        right : {
+            marginB : 20,
+            h : 35,
+            corner : 2,
+            color : "#0077f8",
+            bg : '#ccc',
+            size : 12
+        }
+  },
+    tapClose : false
+  }, function(ret) {
+    if (ret.eventType == 'left') {
+        dialogBox.close({
+            dialogName: 'alert'
+        });
+    }else{
+      api.ajax({
+          url : url+'/cors/returnDeliveOrder',
+          method : 'post',
+          dataType : 'json',
+          headers:{
+            "content-type": "application/json"
+          },
+          data : {
+              body:{
+                orderId:orderId,
+                userId:$api.getStorage('userId'),
+                teamId:$api.getStorage('teamId')
+              }
+          }
+      },function(ret, err) {
+            dialogBox.close({
+                dialogName: 'alert'
+            });
+            requestData();
+          }
+      );
+    }
+  });
+
+}
+//回收饭盒
+function recycle(_this,orderId,isRecycle){
+  var dom=$api.dom(_this,'i');
+  var isRecycle;
+  if($api.hasCls(dom, 'icon-gou')){
+    isRecycle=false;
+  }else{
+    isRecycle=true;
+  }
+  dialogBox.alert({
+    texts : {
+        content : '是否回收饭盒？',
+        leftBtnTitle : '取消',
+        rightBtnTitle : '回收'
+    },
+    styles : {
+        bg : '#fff',
+        corner : 6,
+        w : 260,
+        content : {
+          marginT : 40,
+          marginB : 40,
+          color : '#333',
+          size : 16
+        },
+        left : {
+          marginB : 20,
+          marginL : 30,
+          h : 35,
+          corner : 2,
+          color : "#666",
+          bg : '#ccc',
+          size : 12
+        },
+        right : {
+          marginB : 20,
+          h : 35,
+          corner : 2,
+          color : "#0077f8",
+          bg : '#ccc',
+          size : 12
+        }
+    },
+      tapClose : false
+    }, function(ret) {
+      if (ret.eventType == 'left') {
+          api.ajax({
+                  url : url+'/cors/updateRecycleBox',
+                  method : 'post',
+                  dataType : 'json',
+                  headers:{
+                    "content-type": "application/json"
+                  },
+              data : {
+                  body:{
+                    orderId:orderId,
+                    isRecycle:false
+                  }
+              }
+          },function(ret, err) {
+            dialogBox.close({
+              dialogName: 'alert'
+            });
+              var dom=$api.dom(_this,'i');
+              $api.removeCls(dom, 'icon-gou');
+              $api.addCls(dom, 'icon-quan');
+        });
+      }else{
+        api.ajax({
+                url : url+'/cors/updateRecycleBox',
+                method : 'post',
+                dataType : 'json',
+                headers:{
+                  "content-type": "application/json"
+                },
+            data : {
+                body:{
+                  orderId:orderId,
+                  isRecycle:true
+                }
+            }
+        },function(ret, err) {
+          dialogBox.close({
+            dialogName: 'alert'
+          });
+            var dom=$api.dom(_this,'i');
+            $api.removeCls(dom, 'icon-quan');
+            $api.addCls(dom, 'icon-gou');
+      });
+    }
+  });
+
+}
+    //联系
+$api.addEvt($api.byId('call'), 'click',
+  function (){
+      var address=$api.text($api.byId('deliveSiteName'));
+      var name=$api.text($api.byId('contactPerson'));
+      var phone=$api.text($api.byId('contactMobile'));
+      var myPhone=$api.text($api.byId('myPhone'));
+      dialogBox.alert({
+        texts: {
+            title: address,
+            content: name+" "+phone,
+            leftBtnTitle: '取消',
+            rightBtnTitle: '呼叫'
+        },
+        styles: {
+            bg: '#fff',
+            w: 260,
+            title: {
+                marginT: 20,
+                titleSize: 14,
+                titleColor: '#000'
+            },
+            content: {
+                color: '#000',
+                size: 14
+            },
+            left: {
+                marginB: 20,
+                marginL: 30,
+                h: 35,
+                corner: 2,
+                size: 12,
+                color : "#666",
+                bg : '#ccc'
+            },
+            right: {
+                marginB: 20,
+                h: 35,
+                corner: 2,
+                size: 12,
+                color : "#0077f8",
+                bg : '#ccc'
+            }
+          }
+        }, function(ret) {
+        if (ret.eventType == 'left') {
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'alert'
+            });
+        }else{
+          api.call({
+            type: 'tel',
+            number: ''+myPhone
+          });
+        }
+      });
+    }
+);
+function closeNow(){
+  api.closeWin();
+  api.sendEvent({
+    name: 'myEvent',
+    extra: {
+        key1: 'value1',
+        key2: 'value2'
+    }
+  });
+}
+</script>
+</body>
+</html>

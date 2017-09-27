@@ -1,0 +1,84 @@
+@charset "UTF-8";
+body {
+  background: #f2f5f8; }
+
+.my-hr {
+  margin: 0 0.5rem;
+  border-top: 1px solid #d2d2d2;
+  padding-bottom: 0.5rem; }
+
+.ant-steps {
+  position: relative;
+  padding: 0 0.5rem; }
+  .ant-steps .ant-steps-main {
+    overflow: hidden; }
+    .ant-steps .ant-steps-main .gray {
+      color: #999999;
+      font-size: 0.65rem;
+      padding: 0.5rem 0 0.75rem 0; }
+    .ant-steps .ant-steps-main .customer {
+      padding-bottom: 0.9rem; }
+      .ant-steps .ant-steps-main .customer .call {
+        padding: 0 0.5rem 0 1.5rem;
+        height: 1.25rem;
+        border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
+        border: solid 1px #0077f8;
+        background: #ffffff;
+        font-size: 0.65rem;
+        margin-left: 5px;
+        background: url("../image/my/calling.png") no-repeat 0.6rem center;
+        background-size: auto 0.6rem; }
+  .ant-steps .ant-steps-fetch {
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    height: 100%; }
+    .ant-steps .ant-steps-fetch i {
+      width: 1px;
+      height: 100%;
+      display: inline-block;
+      vertical-align: top;
+      background: #60ca99; }
+  .ant-steps .ant-steps-send .ant-steps-head {
+    float: left;
+    margin-right: 0.5rem; }
+    .ant-steps .ant-steps-send .ant-steps-head .ant-steps-head-inner {
+      display: block;
+      border: 1px solid #60ca99;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 1rem;
+      text-align: center;
+      position: relative;
+      background: #fff;
+      line-height: 1rem;
+      font-size: 0.6rem; }
+      .ant-steps .ant-steps-send .ant-steps-head .ant-steps-head-inner span:before {
+        content: "取"; }
+      .ant-steps .ant-steps-send .ant-steps-head .ant-steps-head-inner .send:before {
+        content: "送"; }
+    .ant-steps .ant-steps-send .ant-steps-head .ant-steps-head-fetch {
+      background: #60ca99;
+      color: #ffffff; }
+    .ant-steps .ant-steps-send .ant-steps-head .ant-steps-head-send {
+      background: #ffffff;
+      color: #60ca99; }
+
+.footer {
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 2.05rem;
+  padding: 0 0.5rem;
+  border-top: 1px solid #d2d2d2; }
+  .footer .my-btn {
+    width: 3.1rem;
+    height: 1.25rem;
+    font-size: 0.65rem;
+    border-radius: 1.25rem;
+    color: #0077f8;
+    border: 1px solid #0077f8;
+    background: #ffffff; }
+
+/*# sourceMappingURL=send.css.map */

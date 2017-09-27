@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>助餐专送</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
+    <link rel="stylesheet" href="../css/send.css">
+</head>
+<body>
+  <header class="aui-bar aui-bar-nav" id="header">
+    <div class="aui-title">助餐专送</div>
+    <a class="aui-pull-right aui-btn" onclick="loginOut()">
+        注销
+    </a>
+  </header>
+  <div class="aui-tab" id="tab">
+      <div class="aui-tab-item aui-active" tapmode="selected" onclick="setMenuIndex(0)">
+        <div id="send"></div>
+        待送达
+      </div>
+      <div class="aui-tab-item" tapmode="selected" onclick="setMenuIndex(1)">
+        <div id="delivery"></div>已送达
+      </div>
+  </div>
+
+</body>
+</html>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+var dialogBox;
+apiready=function(){
+  dialogBox = api.require('dialogBox');
+  var header = $api.byId('header');
+  var tab=$api.byId("tab");
+  $api.fixStatusBar(header);
+  var h1=$api.offset(header).h;
+  var h2=$api.offset(tab).h;
+  menus=$api.domAll(tab,'.aui-tab-item');
+  var frames=[];
+  for (var i = 0,len = menus.length; i < len; i++) {
+            frames.push({
+                name: 'frame'+i,
+                url: 'frame'+i+'.html',
+                bounces: true
+            });
+        }
+
+  api.openFrameGroup ({
+      name: 'group',
+      scrollEnabled: true,
+      rect: {
+           x: 0,
+           y: h1+h2,
+           w: api.winWidth,
+           h: 'auto'
+      },
+      index: 0,
+      frames: frames
+  }, function(ret, err){
+      setMenuSelected(ret.index);
+  });
+  api.addEventListener({
+      name: 'redFrame0'
+  }, function(ret, err) {
+      ret.value.frame0?$api.addCls($api.byId('send'), 'aui-dot'):$api.removeCls($api.byId('send'), 'aui-dot');
+  });
+  api.addEventListener({
+      name: 'redFrame1'
+  }, function(ret, err) {
+      ret.value.frame1?$api.addCls($api.byId('delivery'), 'aui-dot'):$api.removeCls($api.byId('delivery'), 'aui-dot');
+  });
+}
+var menus;
+function setMenuIndex(index_){
+  setMenuSelected(index_);
+  api.setFrameGroupIndex({
+      name: 'group',
+      index: index_,
+      scroll: true
+  });
+
+}
+function setMenuSelected(index_){
+  for(var i=0;i<menus.length;i++){
+    if(index_==i){
+      $api.addCls(menus[i], 'aui-active');
+    }else{
+      $api.removeCls(menus[i], 'aui-active');
+
+    }
+  }
+}
+function loginOut(){
+  dialogBox.alert({
+    texts : {
+        content : '是否确认注销？',
+        leftBtnTitle : '取消',
+        rightBtnTitle : '确认'
+    },
+    styles : {
+        bg : '#fff',
+        corner : 6,
+        w : 260,
+        content : {
+          marginT : 40,
+          marginB : 40,
+          color : '#333',
+          size : 16
+        },
+        left : {
+          marginB : 20,
+          marginL : 30,
+          h : 35,
+          corner : 2,
+          color : "#666",
+          bg : '#ccc',
+          size : 12
+        },
+        right : {
+          marginB : 20,
+          h : 35,
+          corner : 2,
+          color : "#0077f8",
+          bg : '#ccc',
+          size : 12
+        }
+      },
+      tapClose : false
+    }, function(ret) {
+      if (ret.eventType == 'left') {
+          dialogBox.close({dialogName: 'alert'});
+      }else{
+        $api.rmStorage("loginInfo");
+        api.openWin({
+            name: 'login',
+            url: '../login.html',
+            pageParam: {name: 'login'}
+        });
+        dialogBox.close({dialogName: 'alert'});
+      }
+
+  });
+}
+
+  </script>

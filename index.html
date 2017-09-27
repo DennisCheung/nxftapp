@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>助餐专送</title>
+</head>
+<body>
+</body>
+</html>
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript">
+// $api.setStorage("url","http://192.168.1.35:8080/mnxft");
+$api.setStorage("url","http://www.jkjsf.com/mnxft");
+apiready=function(){
+  var url=$api.getStorage("url");
+  var loginInfo=$api.getStorage('loginInfo');
+  if(loginInfo){//已登录JSON.stringify(loginInfo)!=null
+    loginInfo=JSON.parse(loginInfo);
+    api.showProgress();
+    api.ajax({
+            url : url+'/cors/loginAuth',
+            method : 'post',
+            dataType : 'json',
+            headers:{
+              "content-type": "application/json"
+            },
+            data : {
+                body:{
+                  username : loginInfo.name,
+                  password : loginInfo.password
+                }
+            }
+    },function(ret, err) {
+            if (ret) {
+                  //成功打开
+                  api.openWin({
+                      name: 'main',
+                      url: 'widget://html/main.html',
+                      pageParam: {
+                          name: 'main'
+                      },
+                      reload:true
+                  });
+
+            } else {
+              api.openWin({
+                  name: 'login',
+                  url: 'login.html',
+                  pageParam: {
+                      name: 'login'
+                  },
+                  reload:true
+              });
+            }
+                    api.hideProgress();
+    }
+  );
+   }else{//打开登录页
+     api.openWin({
+         name: 'login',
+         url: 'login.html',
+         pageParam: {
+             name: 'login'
+         },
+         reload:true
+     });
+   }
+  exitApp();
+}
+function exitApp() {
+		api.addEventListener({
+			name : 'keyback'
+		}, function(ret, err) {
+			api.toast({
+				msg : '再按一次退出',
+				duration : 2000,
+				location : 'bottom'
+			});
+			api.addEventListener({
+				name : 'keyback'
+			}, function(ret, err) {
+				api.closeWidget({
+					id : 'A6050231485360', //这里改成自己的应用ID
+					retData : {
+						name : 'closeWidget'
+					},
+					silent : true
+				});
+			});
+			setTimeout(function() {
+				exitApp();
+			}, 3000)
+		});
+	}
+
+</script>
